@@ -2,8 +2,8 @@ import json
 from datetime import datetime, timezone
 from math import sin, cos, asin
 
-from app.schemas import StarInStorage, StarFilter, EarthPosition, PaginationBase, PaginatedOutput
 from app.crud import BaseStorage
+from app.schemas import StarInStorage, StarFilter, EarthPosition, PaginationBase
 
 
 class StarStorage(BaseStorage):

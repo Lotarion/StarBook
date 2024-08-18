@@ -1,11 +1,7 @@
-from typing import List
-
 from fastapi import APIRouter, Depends
 
 from app.crud import constellation_storage
 from app.schemas import Constellation, ConstellationCreate, ConstellationUpdate, PaginationBase, PaginatedOutput
-from .deps import get_pagination_params
-
 
 router = APIRouter()
 
@@ -17,8 +13,7 @@ def read_constellations(
     """
     Retrieve a page from the list of constellations
     """
-    p = get_pagination_params(pagination)
-    return constellation_storage.get_all(p)
+    return constellation_storage.get_all(pagination=pagination)
 
 
 @router.get("/by_name/", status_code=200, response_model=PaginatedOutput)

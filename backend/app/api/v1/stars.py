@@ -2,7 +2,6 @@ from fastapi import APIRouter, Depends
 
 from app.crud import star_storage
 from app.schemas import Star, StarCreate, StarUpdate, PaginationBase, StarFilter, EarthPosition, PaginatedOutput
-from .deps import get_filtering_params
 
 router = APIRouter()
 
@@ -24,7 +23,7 @@ def read_stars_by_name(
 
 @router.get("/filtered/", status_code=200, response_model=PaginatedOutput)
 def read_all_stars_by_filter(
-        filtering: StarFilter = Depends(get_filtering_params),
+        filtering: StarFilter = Depends(),
         pagination: PaginationBase = Depends(),
 ):
     return star_storage.get_stars_by_filter(filtering, pagination)

@@ -38,7 +38,7 @@ class Star(StarInStorage):
 
 class StarFilter(BaseModel):
     filter_by: Literal['constellation_id', 'spectral_class', 'diameter', 'mass', 'visible_size', 'distance',
-                       'absolute_magnitude'] = 'constellation_id'
+                       'absolute_magnitude'] = 'spectral_class'
     filter_string: str | None = ""
     filter_range: tuple[float, float] | None = (0, 1)
 

@@ -35,7 +35,7 @@ class BaseStorage:
         list_out = sorted(list_in, key=lambda d: d[pagination.sorting_parameter],
                           reverse=pagination.sorting_direction == 'descending')
 
-        return PaginatedOutput.parse_obj({"total_objects": len(list_in), "objects": list_out[start:end]})
+        return PaginatedOutput.model_validate({"total_objects": len(list_in), "objects": list_out[start:end]})
 
     def get_all(self, pagination: PaginationBase):
         with open(self.storage_file) as storage_file:
