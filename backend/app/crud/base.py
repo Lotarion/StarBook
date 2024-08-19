@@ -57,7 +57,7 @@ class BaseStorage:
             data = json.load(storage_file)
         results = []
         for obj in data[self.DATA_KEY]:
-            if obj_name in obj['name']:
+            if obj_name.lower() in obj['name'].lower():
                 results.append(obj)
         if len(results) > 0:
             return self._paginate_list(results, pagination)
