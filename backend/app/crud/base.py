@@ -32,7 +32,7 @@ class BaseStorage:
         start = pagination.page * pagination.per_page
         end = start + pagination.per_page
 
-        list_out = sorted(list_in, key=lambda d: d[pagination.sorting_parameter],
+        list_out = sorted(list_in, key=lambda d: d[pagination.sorting_parameter] if d[pagination.sorting_parameter] else -999,
                           reverse=pagination.sorting_direction == 'descending')
 
         return PaginatedOutput.model_validate({"total_objects": len(list_in), "objects": list_out[start:end]})
