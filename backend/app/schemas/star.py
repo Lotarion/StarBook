@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Literal, Annotated
+from typing import Literal, Annotated, Optional
 from uuid import uuid4
 
 from pydantic import BaseModel, field_validator, Field
@@ -10,13 +10,13 @@ class StarBase(BaseModel):
     name: str
     right_ascension: Annotated[float, Field(ge=0, le=360)]
     declination: Annotated[float, Field(ge=-90, le=90)]
-    diameter: float | None = -1
-    mass: float | None = -1
-    visible_size: float | None = -1
-    distance: float | None = -1
-    spectral_class: str | None = "Unknown"
-    absolute_magnitude: float | None = -1
-    constellation_id: str | None = "Unknown"
+    diameter: Optional[float]
+    mass: Optional[float]
+    visible_size: Optional[float]
+    distance: Optional[float]
+    spectral_class: Optional[str]
+    absolute_magnitude: Optional[float]
+    constellation_id: Optional[str]
 
 
 class StarCreate(StarBase):

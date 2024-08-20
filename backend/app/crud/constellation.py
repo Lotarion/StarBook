@@ -21,10 +21,10 @@ class ConstellationStorage(BaseStorage):
         if obj_index != -1:
             deleted_obj = data[self.DATA_KEY].pop(obj_index)
             for star in data[settings.STARS_DATA_KEY]:
-                if star['constellation_id'] == "Unknown":
+                if not star['constellation_id']:
                     continue
                 if star['constellation_id'] == deleted_obj['id']:
-                    star['constellation_id'] = "Unknown"
+                    star['constellation_id'] = None
             with open(self.storage_file, 'w') as storage_file:
                 json.dump(data, storage_file)
             return deleted_obj
