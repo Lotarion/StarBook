@@ -2,12 +2,13 @@ import json
 from datetime import datetime, timezone
 from math import sin, cos, asin
 
+from app.core.config import settings
 from app.crud import BaseStorage
 from app.schemas import StarInStorage, StarFilter, EarthPosition, PaginationBase
 
 
 class StarStorage(BaseStorage):
-    DATA_KEY = "stars"
+    DATA_KEY = settings.STARS_DATA_KEY
 
     def create(self, star_in):
         new_obj = StarInStorage.model_validate(star_in.model_dump())
