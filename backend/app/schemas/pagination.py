@@ -11,5 +11,5 @@ class PaginationBase(BaseModel):
 
 
 class PaginatedOutput(BaseModel):
-    total_objects: Annotated[int, Field(gt=0)]
+    total_objects: Annotated[int, Field(ge=0)]
     objects: list
