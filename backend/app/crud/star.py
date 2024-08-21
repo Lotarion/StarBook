@@ -25,7 +25,7 @@ class StarStorage(BaseStorage):
                     results.append(star)
         else:
             for star in data[self.DATA_KEY]:
-                if filters.filter_range[0] <= star[filters.filter_by] <= filters.filter_range[1]:
+                if star[filters.filter_by] and filters.filter_range[0] <= star[filters.filter_by] <= filters.filter_range[1]:
                     results.append(star)
 
         return self._paginate_list(results, pagination)
