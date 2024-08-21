@@ -24,7 +24,7 @@ def read_constellations_by_name(
     return constellation_storage.get_by_name(name, pagination)
 
 
-@router.get("/{constellation_id}", status_code=200, response_model=Constellation)
+@router.get("/{constellation_id}/", status_code=200, response_model=Constellation)
 def read_constellation(
     constellation_id: str
 ):
@@ -45,7 +45,7 @@ def update_constellation(
     return constellation_storage.update(obj_in=constellation_in)
 
 
-@router.delete("/{constellation_id}", status_code=200, response_model=Constellation)
+@router.delete("/{constellation_id}/", status_code=200, response_model=Constellation)
 def delete_constellation(
         constellation_id: str
 ):

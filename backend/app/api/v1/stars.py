@@ -37,7 +37,7 @@ def read_all_stars_visible(
     return star_storage.get_stars_visible(position, pagination)
 
 
-@router.get("/{star_id}", status_code=200, response_model=Star)
+@router.get("/{star_id}/", status_code=200, response_model=Star)
 def read_star(
         star_id: str
 ):
@@ -60,7 +60,7 @@ def update_star(
     return star
 
 
-@router.delete("/{star_id}", status_code=200, response_model=Star)
+@router.delete("/{star_id}/", status_code=200, response_model=Star)
 def delete_star(
         star_id: str
 ):
