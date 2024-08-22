@@ -1,3 +1,5 @@
+from typing import List
+
 from fastapi import APIRouter, Depends
 
 from app.crud import constellation_storage
@@ -6,7 +8,7 @@ from app.schemas import Constellation, ConstellationCreate, ConstellationUpdate,
 router = APIRouter()
 
 
-@router.get("/", status_code=200, response_model=PaginatedOutput)
+@router.get("/", status_code=200, response_model=List[Constellation])
 def read_constellations():
     """
     Retrieve a page from the list of constellations
