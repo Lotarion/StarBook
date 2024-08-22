@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, time
 from typing import Literal, Annotated
 from uuid import uuid4
 
@@ -52,4 +52,21 @@ class StarFilter(BaseModel):
 class EarthPosition(BaseModel):
     latitude: float
     longitude: float
-    timestamp: float | None = datetime.now().timestamp()
+    date: str
+    time: str
+
+    @field_validator('date')
+    def is_valid_date(cls, v: str) -> str:
+        try:
+            date.fromisoformat(v)
+        except ValueError:
+            raise ValueError('Invalid date')
+        return v
+
+    @field_validator('time')
+    def is_valid_time(cls, v: str) -> str:
+        try:
+            time.fromisoformat(v)
+        except ValueError:
+            raise ValueError('Invalid time')
+        return v
