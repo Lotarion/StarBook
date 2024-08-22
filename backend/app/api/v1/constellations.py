@@ -7,21 +7,11 @@ router = APIRouter()
 
 
 @router.get("/", status_code=200, response_model=PaginatedOutput)
-def read_constellations(
-        pagination: PaginationBase = Depends()
-):
+def read_constellations():
     """
     Retrieve a page from the list of constellations
     """
-    return constellation_storage.get_all(pagination=pagination)
-
-
-@router.get("/by_name/", status_code=200, response_model=PaginatedOutput)
-def read_constellations_by_name(
-        name: str,
-        pagination: PaginationBase = Depends()
-):
-    return constellation_storage.get_by_name(name, pagination)
+    return constellation_storage.get_all()
 
 
 @router.get("/{constellation_id}/", status_code=200, response_model=Constellation)
