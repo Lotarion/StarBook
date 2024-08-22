@@ -3,12 +3,18 @@ import json
 from fastapi import HTTPException
 
 from app.core.config import settings
-from app.schemas import ConstellationInStorage
+from app.schemas import ConstellationInStorage, PaginationBase
 from app.crud import BaseStorage
 
 
 class ConstellationStorage(BaseStorage):
     DATA_KEY = "constellations"
+
+    def get_all(self):
+        with open(self.storage_file) as storage_file:
+            data = json.load(storage_file)
+        list_of_objects = data[self.DATA_KEY]
+        return sorted(list_of_objects, key=lambda k: k["name"])
 
     def create(self, constellation_in):
         new_obj = ConstellationInStorage.model_validate(constellation_in.model_dump())
